@@ -5,17 +5,23 @@ using UnityEngine;
 public class UI_Control : MonoBehaviour
 {
     [SerializeField] GameObject Logo;
-    [SerializeField] GameObject Button_1;
-    [SerializeField] GameObject Button_2;
-    [SerializeField] GameObject Single_Panel;
-    [SerializeField] GameObject Multi_Panel;
-    // Start is called before the first frame update
+    [SerializeField] GameObject MM_Buttons,Music, Music_Mute, Sound, Sound_Mute;
+    [SerializeField] GameObject Single_Panel, Multi_Panel;
+    [SerializeField] GameObject Settings_Panel;
+    private bool Music_on, Sound_on;
+
     void Start()
     {
-        
+        Music_on = true;
+        Sound_on = true;
+        Logo.SetActive(true);
+        MM_Buttons.SetActive(true);
+        Single_Panel.SetActive(false);
+        Multi_Panel.SetActive(false);
+        Settings_Panel.SetActive(false);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
@@ -24,16 +30,14 @@ public class UI_Control : MonoBehaviour
     public void Single_Button()
     {
         Logo.SetActive(false);
-        Button_1.SetActive(false);
-        Button_2.SetActive(false);
+        MM_Buttons.SetActive(false);
         Multi_Panel.SetActive(false);
         Single_Panel.SetActive(true);
     }
     public void Multi_Button()
     {
         Logo.SetActive(false);
-        Button_1.SetActive(false);
-        Button_2.SetActive(false);
+        MM_Buttons.SetActive(false);
         Single_Panel.SetActive(false);
         Multi_Panel.SetActive(true);
     }
@@ -42,8 +46,48 @@ public class UI_Control : MonoBehaviour
     {
         Single_Panel.SetActive(false);
         Multi_Panel.SetActive(false);
+        Settings_Panel.SetActive(false);
         Logo.SetActive(true);
-        Button_1.SetActive(true);
-        Button_2.SetActive(true);
+        MM_Buttons.SetActive(true);
     }
+    public void Settings_Button()
+    {
+        Single_Panel.SetActive(false);
+        Multi_Panel.SetActive(false);
+        Logo.SetActive(false);
+        MM_Buttons.SetActive(false);
+        Settings_Panel.SetActive(true);
+    }
+    public void Music_Button()
+    {
+        if (Music_on)
+        {
+            Music.SetActive(false);
+            Music_Mute.SetActive(true);
+            Music_on = false;
+        }
+        else
+        {
+            Music_Mute.SetActive(false);
+            Music.SetActive(true);
+            Music_on = true;
+        }
+    }
+
+    public void Sound_Button()
+    {
+        if (Sound_on)
+        {
+            Sound.SetActive(false);
+            Sound_Mute.SetActive(true);
+            Sound_on = false;
+        }
+        else
+        {
+            Sound_Mute.SetActive(false);
+            Sound.SetActive(true);
+            Sound_on = true;
+        }
+    }
+
 }
